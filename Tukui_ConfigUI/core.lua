@@ -22,7 +22,6 @@ local ALLOWED_GROUPS = {
 	["buffreminder"]=1,
 	["auras"]=1,
 	["Addon_Skins"]=1,
-	["im"]=1,
 	["sCombo"]=1,
 	["castbar"]=1,
 	["extra_panels"]=1,
@@ -61,6 +60,7 @@ local function Local(o)
 	
 	--addon skins
 	if o == "TukuiConfigUIAddon_Skins" then o = TukuiL.option_Addon_Skins end
+	if o == "TukuiConfigUIAddon_Skinsembedright" then o = TukuiL.option_skin_embedright end
 	if o == "TukuiConfigUIAddon_Skinsbackground" then o = TukuiL.option_Addon_background end
 	if o == "TukuiConfigUIAddon_Skinscombat_toggle" then o = TukuiL.option_Addon_combat_toggle end
 	if o == "TukuiConfigUIAddon_SkinsSkada" then o = TukuiL.option_skin_skada end
@@ -71,6 +71,7 @@ local function Local(o)
 	if o == "TukuiConfigUIAddon_SkinsTinyDPS" then o = TukuiL.option_skin_tinydps end
 	if o == "TukuiConfigUIAddon_SkinsAuctionator" then o = TukuiL.option_skin_auctionator end
 	if o == "TukuiConfigUIAddon_SkinsBigwigs" then o = TukuiL.option_skin_bigwigs end
+	
 	
 	--integrated modules
 	if o == "TukuiConfigUIim" then o = TukuiL.option_im end
@@ -261,8 +262,7 @@ local function Local(o)
 	if o == "TukuiConfigUIchatwhispersound" then o = TukuiL.option_chat_whispersound end
 	if o == "TukuiConfigUIchatbackground" then o = TukuiL.option_chat_background end
 	if o == "TukuiConfigUIchatnamealert" then o = TukuiL.option_chat_namealert end
-	if o == "TukuiConfigUIchatlayout_switch" then o = TukuiL.option_chat_layout_switch end
-	
+		
 	-- aura
 	if o == "TukuiConfigUIauras" then o = TukuiL.option_auras end
 	if o == "TukuiConfigUIaurasplayer" then o = TukuiL.option_auras_player end
@@ -728,7 +728,7 @@ function CreateTukuiConfigUI()
 			button:SetChecked(false)
 		end
 	end	
-	
+
 	ShowGroup("general")
 end
 

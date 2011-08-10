@@ -11,7 +11,7 @@ local GameTooltip, GameTooltipStatusBar = _G["GameTooltip"], _G["GameTooltipStat
 
 local gsub, find, format = string.gsub, string.find, string.format
 
-local Tooltips = {GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ShoppingTooltip3,WorldMapTooltip}
+local Tooltips = {GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ShoppingTooltip3,WorldMapTooltip,WorldMapCompareTooltip1,WorldMapCompareTooltip2,WorldMapCompareTooltip3}
 local ItemRefTooltip = ItemRefTooltip
 local targetyou = L.tooltip_you
 local linkTypes = {item = true, enchant = true, spell = true, quest = true, unit = true, talent = true, achievement = true, glyph = true}
@@ -27,15 +27,16 @@ local NeedBackdropBorderRefresh = true
 
 
 local anchor = CreateFrame("Frame", "TukuiTooltipAnchor", UIParent)
-anchor:SetSize(200, TukuiInfoRight:GetHeight())
+anchor:SetSize(200, 17)
 anchor:SetFrameStrata("TOOLTIP")
 anchor:SetFrameLevel(20)
 anchor:SetClampedToScreen(true)
 anchor:SetAlpha(0)
-if C.chat.background and TukuiTabsRightBackground then
-	anchor:SetPoint("BOTTOMRIGHT", TukuiTabsRightBackground, "TOPRIGHT", 0, -TukuiInfoRight:GetHeight())
+if TukuiChatBackgroundRight:IsVisible() then
+	anchor:SetPoint("BOTTOMRIGHT", TukuiChatBackgroundRight, "TOPRIGHT", 0, -17)
 else
-	anchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight)
+	anchor:ClearAllPoints()
+	anchor:SetPoint("BOTTOMRIGHT", TukuiChatBackgroundRight, "TOPRIGHT", 0, -17)
 end
 anchor:SetTemplate("Default")
 anchor:SetBackdropBorderColor(1, 0, 0, 1)
@@ -82,7 +83,7 @@ local function UpdateTooltip(self)
 		end
 	end
 	
-if self:GetAnchorType() == "ANCHOR_NONE" and TukuiTooltipAnchor then
+	if self:GetAnchorType() == "ANCHOR_NONE" and TukuiTooltipAnchor then
 		local point = TukuiTooltipAnchor:GetPoint()
 		if point == "TOPLEFT" then
 			self:ClearAllPoints()
@@ -100,10 +101,10 @@ if self:GetAnchorType() == "ANCHOR_NONE" and TukuiTooltipAnchor then
 			if TukuiBags and TukuiBags:IsShown() then
 				self:ClearAllPoints()
 				self:SetPoint("BOTTOMRIGHT", TukuiBags, "TOPRIGHT", 0, x)
-			elseif HasPetUI() then
+			elseif HasPetUI() and TukuiChatBackgroundRight:IsVisible() then
 					self:ClearAllPoints()
 					self:SetPoint("BOTTOMRIGHT", TukuiPetBar, "TOPRIGHT", 0, x)
-			elseif TukuiBar5 and TukuiBar5:IsShown() then
+			elseif TukuiBar5 and TukuiBar5:IsShown() and TukuiChatBackgroundRight:IsVisible() then
 					self:ClearAllPoints()
 					self:SetPoint("BOTTOMRIGHT", TukuiBar5, "TOPRIGHT", 0, x)	
 			else	
@@ -399,7 +400,7 @@ local BorderColor = function(self)
 end
 
 local SetStyle = function(self)
-	self:SetTemplate("Default")
+	self:SetTemplate("Transparent")
 	BorderColor(self)
 end
 
@@ -413,7 +414,7 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 		
 		ItemRefTooltip:HookScript("OnTooltipSetItem", SetStyle)
 		ItemRefTooltip:HookScript("OnShow", SetStyle)	
-		FriendsTooltip:SetTemplate("Default")
+		FriendsTooltip:SetTemplate("Transparent")
 			
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 		

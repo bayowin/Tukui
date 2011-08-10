@@ -11,12 +11,12 @@ if C["datatext"].specswitcher and C["datatext"].specswitcher > 0 then
 	Stat:SetFrameLevel(3)
  
 
-	local Text = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-	Text:SetFont(C.media.pixelfont, C["datatext"].fontsize, "THINOUTLINE")
-
+	local Text = TukuiChatBackgroundLeft:CreateFontString(nil, "OVERLAY")
+	Text:SetFont(C.media.pixelfont, C["datatext"].fontsize, "MONOCHROMEOUTLINE")
+	
 
 	T.PP(C["datatext"].specswitcher, Text)
-Stat:SetParent(Text:GetParent())
+	Stat:SetParent(Text:GetParent())
 
 local talent = {}
 local active
@@ -88,7 +88,11 @@ Stat:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 Stat:SetScript("OnEvent", OnEvent)
 Stat:SetScript("OnUpdate", Update)
 
-Stat:SetScript("OnMouseDown", function()
-	SetActiveTalentGroup(active == 1 and 2 or 1)
-end)
+Stat:SetScript("OnMouseDown", function(self, btn)
+	if btn == 'RightButton'  then
+		ToggleTalentFrame()
+	else
+		SetActiveTalentGroup(active == 1 and 2 or 1)
+	end
+	end)
 end

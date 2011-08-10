@@ -4,8 +4,7 @@ local function LoadSkin()
 	T.SkinCloseButton(AuctionFrameCloseButton)
 	AuctionFrame:StripTextures(true)
 	AuctionFrame:SetTemplate("Transparent")
-	AuctionFrame:CreateShadow("Default")
-	
+		
 	BrowseFilterScrollFrame:StripTextures()
 	BrowseScrollFrame:StripTextures()
 	AuctionsScrollFrame:StripTextures()
@@ -14,7 +13,9 @@ local function LoadSkin()
 	T.SkinDropDownBox(BrowseDropDown)
 	T.SkinDropDownBox(PriceDropDown)
 	T.SkinDropDownBox(DurationDropDown)
-	
+	T.SkinScrollBar(BrowseFilterScrollFrameScrollBar)
+	T.SkinScrollBar(BrowseScrollFrameScrollBar)
+		
 	T.SkinCheckBox(IsUsableCheckButton)
 	T.SkinCheckBox(ShowOnPlayerCheckButton)
 	
@@ -36,7 +37,6 @@ local function LoadSkin()
 	--Progress Frame
 	AuctionProgressFrame:StripTextures()
 	AuctionProgressFrame:SetTemplate("Transparent")
-	AuctionProgressFrame:CreateShadow("Default")
 	AuctionProgressFrameCancelButton:StyleButton()
 	AuctionProgressFrameCancelButton:SetTemplate("Transparent")
 	AuctionProgressFrameCancelButton:SetHitRectInsets(0, 0, 0, 0)

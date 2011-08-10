@@ -4,9 +4,13 @@ local function LoadSkin()
 	T.SkinCloseButton(QuestLogFrameCloseButton)
 	QuestLogFrame:StripTextures()
 	QuestLogFrame:SetTemplate("Transparent")
-	QuestLogFrame:CreateShadow("Default")
 	QuestLogCount:StripTextures()
-
+	
+	T.SkinCloseButton(QuestLogFrameCompleteButton)
+	QuestLogFrameCompleteButton:StripTextures()
+	QuestLogFrameCompleteButton:SetTemplate("Transparent")
+	QuestLogFrameCompleteButton:StripTextures()
+		
 	EmptyQuestLogFrame:StripTextures()
 
 	QuestLogFrameShowMapButton:StripTextures()
@@ -20,6 +24,7 @@ local function LoadSkin()
 		"QuestLogFramePushQuestButton",
 		"QuestLogFrameTrackButton",
 		"QuestLogFrameCancelButton",
+		"QuestLogFrameCompleteButton",
 	}
 
 	for _, button in pairs(buttons) do
@@ -121,8 +126,7 @@ local function LoadSkin()
 	end)
 
 	QuestLogFrame:HookScript("OnShow", function()
-		QuestLogScrollFrame:Height(QuestLogScrollFrame:GetHeight() - 4)
-		QuestLogDetailScrollFrame:Height(QuestLogScrollFrame:GetHeight() - 4)
+		QuestLogDetailScrollFrame:Height(QuestLogScrollFrame:GetHeight()-4)
 		QuestLogScrollFrame:SetTemplate("Transparent")
 		QuestLogDetailScrollFrame:SetTemplate("Transparent")
 	end)

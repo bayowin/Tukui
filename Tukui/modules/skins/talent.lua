@@ -82,7 +82,6 @@ local function LoadSkin()
 	PlayerTalentFramePanel3:CreateBackdrop("Transparent")
 	PlayerTalentFramePanel3.backdrop:Point( "TOPLEFT", PlayerTalentFramePanel3, "TOPLEFT", 3, -3 )
 	PlayerTalentFramePanel3.backdrop:Point( "BOTTOMRIGHT", PlayerTalentFramePanel3, "BOTTOMRIGHT", -3, 3 )
-	PlayerTalentFrame:CreateShadow("Default")
 	T.SkinCloseButton(PlayerTalentFrameCloseButton)
 
 	function talentpairs(inspect,pet)
@@ -224,7 +223,7 @@ local function LoadSkin()
 	for i=1, 3 do
 		TalentSummaryClean(i)
 		TalentHeaderIcon(nil, true, i)
-		for j=1, 2 do
+		for j=1, NUM_TALENT_COLUMNS do
 			TalentSummaryButtons(nil, true, true, i, j)
 			TalentSummaryButtons(nil, true, false, i, j)
 		end

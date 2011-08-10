@@ -3,7 +3,6 @@ local T, C, L = unpack(select(2, ...))
 local function LoadSkin()
 	GuildFrame:StripTextures(true)
 	GuildFrame:SetTemplate("Transparent")
-	GuildFrame:CreateShadow("Default")
 	GuildLevelFrame:Kill()
 	
 	T.SkinCloseButton(GuildMemberDetailCloseButton)
@@ -217,15 +216,16 @@ local function LoadSkin()
 	end
 	
 	--Text Edit Frame
-	GuildTextEditFrame:SetTemplate("Transparent")
+	GuildTextEditFrame:SetTemplate("Default")
 	T.SkinScrollBar(GuildTextEditScrollFrameScrollBar)
-	GuildTextEditContainer:SetTemplate("Transparent")
-	for i=1, GuildTextEditFrame:GetNumChildren() do
-		local child = select(i, GuildTextEditFrame:GetChildren())
-		if child:GetName() == "GuildTextEditFrameCloseButton" and child:GetWidth() == 32 then
-			T.SkinCloseButton(child)
-		elseif child:GetName() == "GuildTextEditFrameCloseButton" then
-			T.SkinButton(child, true)
+	GuildTextEditContainer:SetTemplate("Default")
+	for i = 1, GuildLogFrame:GetNumChildren() do
+			local child = select(i, GuildLogFrame:GetChildren())
+			local point = select(1, child:GetPoint())
+		if point == "TOPRIGHT" then
+				T.SkinCloseButton(child)
+		else
+				T.SkinButton(child, true)
 		end
 	end
 	
